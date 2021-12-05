@@ -3,8 +3,11 @@
 //
 //Arduino Based DIY camera intervalometer
 
-#include <LiquidCrystal.h>
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7); //LCD pins
+//#include <LiquidCrystal.h>
+//LiquidCrystal lcd(8, 9, 4, 5, 6, 7); //LCD pins
+
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,16,2);
 
 int keypad_pin = A0;
 int keypad_value = 0;
@@ -25,7 +28,10 @@ unsigned long focusPin = 3;     //Optocoupler in for focus
 
 void setup()
 {
-  lcd.begin(16, 2); //Initialize a 2x16 type LCD
+//  lcd.begin(16, 2); //Initialize a 2x16 type LCD
+     lcd.init();
+     lcd.backlight();
+     t4t
   pinMode(shutterPin, OUTPUT);
   pinMode(focusPin, OUTPUT);
   MainMenuDisplay();
